@@ -29,7 +29,7 @@ public class Order {
     @JoinColumn(name = "area_id", referencedColumnName = "id", nullable = false)
     private Area areaId;
 
-    @OneToMany
-    @JoinColumn(name = "products", nullable = false)
-    private List<Product> products = new ArrayList<>();
+//    @OneToMany
+//    @JoinColumn(name = "products", nullable = false)
+//    private List<Product> products = new ArrayList<>();
 }
