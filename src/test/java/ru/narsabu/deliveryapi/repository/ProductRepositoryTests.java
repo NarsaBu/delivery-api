@@ -44,9 +44,7 @@ public class ProductRepositoryTests {
     void updateProductByIdTest() {
         //GIVEN
         Product productToUpdate = productRepository.save(GenerationUtils.productGenerator());
-        Product productUpdated = productRepository.findById(productToUpdate.getId()).orElse(null);
-        assert productUpdated != null;
-        productUpdated.setProductName(GenerationUtils.generateName());
+        Product productUpdated = GenerationUtils.productUpdater(productToUpdate);
 
         //WHEN
         Product result = productRepository.save(productUpdated);
