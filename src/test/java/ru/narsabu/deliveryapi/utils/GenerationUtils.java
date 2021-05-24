@@ -62,7 +62,7 @@ public class GenerationUtils {
         return order;
     }
 
-    public static Order changeArea(Order order, Area area) {
+    public static Order changeAreaInOrder(Order order, Area area) {
         val orderUpdated = new Order();
         orderUpdated.setId(order.getId());
         orderUpdated.setAreaId(area);
@@ -71,7 +71,7 @@ public class GenerationUtils {
         return orderUpdated;
     }
 
-    public static Order changeProductList(Order order, List<Product> productList) {
+    public static Order changeProductListInOrder(Order order, List<Product> productList) {
         val orderUpdated = new Order();
         orderUpdated.setId(order.getId());
         orderUpdated.setAreaId(order.getAreaId());

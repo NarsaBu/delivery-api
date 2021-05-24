@@ -32,7 +32,7 @@ public class Order {
     @JoinColumn(name = "area_id", referencedColumnName = "id", nullable = false)
     private Area areaId;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "products")
     private List<Product> products = new ArrayList<>();
 }
