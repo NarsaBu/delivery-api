@@ -16,7 +16,6 @@ public class Product {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     @Column(name = "product_name", nullable = false, unique = true)

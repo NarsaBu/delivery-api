@@ -1,6 +1,6 @@
 package ru.narsabu.deliveryapi.service;
 
-import org.springframework.http.ResponseEntity;
+import ru.narsabu.deliveryapi.dto.AreaDto;
 import ru.narsabu.deliveryapi.model.Area;
 
 import java.util.List;
@@ -8,13 +8,13 @@ import java.util.UUID;
 
 public interface AreaService {
 
-    List<Area> getAreaList();
+    List<AreaDto> getAreaList();
 
-    ResponseEntity<?> getAreaById(UUID id);
+    AreaDto getAreaById(UUID id);
 
-    ResponseEntity<?> createArea(Area area);
+    AreaDto createArea(Area area);
 
-    ResponseEntity<?> updateAreaById(UUID id, Area area);
+    AreaDto updateAreaById(UUID id, Area area);
 
     void deleteAreaById(UUID id);
 }

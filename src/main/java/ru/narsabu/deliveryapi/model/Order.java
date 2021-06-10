@@ -25,7 +25,6 @@ public class Order {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     @OneToOne
