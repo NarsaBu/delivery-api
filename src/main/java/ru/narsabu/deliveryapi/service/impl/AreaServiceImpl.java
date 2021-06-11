@@ -1,7 +1,6 @@
 package ru.narsabu.deliveryapi.service.impl;
 
 import org.springframework.stereotype.Service;
-import ru.narsabu.deliveryapi.dto.AreaDto;
 import ru.narsabu.deliveryapi.exception.AreaNotFoundException;
 import ru.narsabu.deliveryapi.model.Area;
 import ru.narsabu.deliveryapi.repository.AreaRepository;
@@ -26,23 +25,25 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public Area getAreaById(UUID id) {
-        Area area = areaRepository.findById(id).orElseThrow(() -> new AreaNotFoundException("Area not found"));
-
-        return area;
+        return areaRepository.findById(id)
+                .orElseThrow(() -> new AreaNotFoundException("Area not found"));
     }
 
     @Override
-    public void createArea(Area area) {
-        areaRepository.save(area);
+    public Area createArea(Area area) {
+        return areaRepository.save(area);
     }
 
     @Override
-    public void updateAreaById(UUID id, Area area) {
-        Area areaToFind = areaRepository.findById(id).orElseThrow(() -> new AreaNotFoundException("Area not found"));
+    public Area updateAreaById(UUID id, Area area) {
+        Area areaToFind = areaRepository.findById(id)
+                .orElseThrow(() -> new AreaNotFoundException("Area not found"));
         areaToFind.setAreaName(area.getAreaName());
         areaToFind.setDeliveryNumber(area.getDeliveryNumber());
 
         areaRepository.save(areaToFind);
+
+        return areaToFind;
     }
 
     @Override

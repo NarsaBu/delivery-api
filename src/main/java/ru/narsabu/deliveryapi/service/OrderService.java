@@ -1,6 +1,5 @@
 package ru.narsabu.deliveryapi.service;
 
-import org.springframework.http.ResponseEntity;
 import ru.narsabu.deliveryapi.model.Order;
 
 import java.util.List;
@@ -10,11 +9,11 @@ public interface OrderService {
 
     List<Order> getOrderList();
 
-    ResponseEntity<?> getOrderById(UUID id);
+    Order getOrderById(UUID id);
 
-    ResponseEntity<?> createOrder(Order order);
+    Order createOrder(Order order);
 
-    ResponseEntity<?> updateOrderById(UUID id, Order order);
+    Order updateOrderById(UUID id, Order order);
 
     void deleteOrderById(UUID id);
 }
