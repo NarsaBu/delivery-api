@@ -11,9 +11,9 @@ public interface AreaService {
 
     Area getAreaById(UUID id);
 
-    void createArea(Area area);
+    Area createArea(Area area);
 
-    void updateAreaById(UUID id, Area area);
+    Area updateAreaById(UUID id, Area area);
 
     void deleteAreaById(UUID id);
 }

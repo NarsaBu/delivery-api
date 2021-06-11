@@ -1,6 +1,5 @@
 package ru.narsabu.deliveryapi.service;
 
-import org.springframework.http.ResponseEntity;
 import ru.narsabu.deliveryapi.model.Product;
 
 import java.util.List;
@@ -10,11 +9,11 @@ public interface ProductService {
 
     List<Product> getProductList();
 
-    ResponseEntity<?> getProductById(UUID id);
+    Product getProductById(UUID id);
 
-    ResponseEntity<?> createProduct(Product product);
+    Product createProduct(Product product);
 
-    ResponseEntity<?> updateProductById(UUID id, Product product);
+    Product updateProductById(UUID id, Product product);
 
     void deleteProductById(UUID id);
 }
