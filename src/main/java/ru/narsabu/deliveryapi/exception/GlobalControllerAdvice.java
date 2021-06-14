@@ -10,24 +10,24 @@ import ru.narsabu.deliveryapi.util.GenerateErrorMessage;
 @ControllerAdvice
 public class GlobalControllerAdvice {
 
-    @ExceptionHandler(AreaNotFoundException.class)
-    public ResponseEntity<ErrorMessageDto> areaNotFoundExceptionHandler(AreaNotFoundException e) {
+    @ExceptionHandler(AreaException.class)
+    public ResponseEntity<ErrorMessageDto> areaNotFoundExceptionHandler(AreaException e) {
         return new ResponseEntity<>(
                 GenerateErrorMessage.generateErrorMessageDto(e.getMessage()),
                 HttpStatus.BAD_REQUEST
         );
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ErrorMessageDto> productNotFoundExceptionHandler(ProductNotFoundException e) {
+    @ExceptionHandler(ProductException.class)
+    public ResponseEntity<ErrorMessageDto> productNotFoundExceptionHandler(ProductException e) {
         return new ResponseEntity<>(
                 GenerateErrorMessage.generateErrorMessageDto(e.getMessage()),
                 HttpStatus.BAD_REQUEST
         );
     }
 
-    @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<ErrorMessageDto> orderNotFoundExceptionHandler(OrderNotFoundException e) {
+    @ExceptionHandler(OrderException.class)
+    public ResponseEntity<ErrorMessageDto> orderNotFoundExceptionHandler(OrderException e) {
         return new ResponseEntity<>(
                 GenerateErrorMessage.generateErrorMessageDto(e.getMessage()),
                 HttpStatus.BAD_REQUEST

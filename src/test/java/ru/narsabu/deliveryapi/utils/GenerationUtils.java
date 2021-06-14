@@ -53,30 +53,4 @@ public class GenerationUtils {
 
         return productUpdated;
     }
-
-    public static Order orderGenerator(Area area, List<Product> productList) {
-        val order = new Order();
-        order.setAreaId(area);
-        order.setProducts(productList);
-
-        return order;
-    }
-
-    public static Order changeAreaInOrder(Order order, Area area) {
-        val orderUpdated = new Order();
-        orderUpdated.setId(order.getId());
-        orderUpdated.setAreaId(area);
-        orderUpdated.setProducts(order.getProducts());
-
-        return orderUpdated;
-    }
-
-    public static Order changeProductListInOrder(Order order, List<Product> productList) {
-        val orderUpdated = new Order();
-        orderUpdated.setId(order.getId());
-        orderUpdated.setAreaId(order.getAreaId());
-        orderUpdated.setProducts(productList);
-
-        return orderUpdated;
-    }
 }

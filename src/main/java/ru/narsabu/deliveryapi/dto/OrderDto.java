@@ -1,17 +1,19 @@
 package ru.narsabu.deliveryapi.dto;
 
-import ru.narsabu.deliveryapi.model.Area;
+import lombok.Data;
 import ru.narsabu.deliveryapi.model.Product;
+import ru.narsabu.deliveryapi.model.ProductForOrder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Data
 public class OrderDto {
 
     private UUID id;
 
-    private Area areaId;
+    private String areaName;
 
-    private List<Product> products = new ArrayList<>();
+    private List<ProductForOrder> products = new ArrayList<>();
 }

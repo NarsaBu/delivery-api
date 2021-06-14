@@ -50,6 +50,8 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
         Order order = orderMapper.dtoToModel(orderDto);
+        System.out.println(order);
+        System.out.println(orderDto);
 
         return new ResponseEntity<>(
                 orderMapper.modelToDto(orderService.createOrder(order)),

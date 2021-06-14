@@ -6,4 +6,6 @@ import ru.narsabu.deliveryapi.model.Product;
 import java.util.UUID;
 
 public interface ProductRepository extends JpaRepository<Product, UUID> {
+
+    Product findByProductName(String productName);
 }
