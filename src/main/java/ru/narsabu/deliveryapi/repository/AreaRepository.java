@@ -6,4 +6,6 @@ import ru.narsabu.deliveryapi.model.Area;
 import java.util.UUID;
 
 public interface AreaRepository extends JpaRepository<Area, UUID> {
+
+    Area findByAreaName(String areaName);
 }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.Fetch;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,11 +28,10 @@ public class Order {
     @GeneratedValue
     private UUID id;
 
-    @OneToOne
-    @JoinColumn(name = "area_id", referencedColumnName = "id", nullable = false)
-    private Area areaId;
+    @Column(name = "area_name", nullable = false)
+    private String areaName;
 
-    @OneToMany
-    @JoinColumn(name = "products")
-    private List<Product> products = new ArrayList<>();
+    @ElementCollection
+    @Column(name = "products")
+    private List<ProductForOrder> products = new ArrayList<>();
 }

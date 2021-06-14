@@ -1,7 +1,7 @@
 package ru.narsabu.deliveryapi.service.impl;
 
 import org.springframework.stereotype.Service;
-import ru.narsabu.deliveryapi.exception.ProductNotFoundException;
+import ru.narsabu.deliveryapi.exception.ProductException;
 import ru.narsabu.deliveryapi.model.Product;
 import ru.narsabu.deliveryapi.repository.ProductRepository;
 import ru.narsabu.deliveryapi.service.ProductService;
@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(UUID id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found"));
+                .orElseThrow(() -> new ProductException("Product not found"));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProductById(UUID id, Product product) {
         Product productToFind = productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found"));
+                .orElseThrow(() -> new ProductException("Product not found"));
         productToFind.setProductName(product.getProductName());
         productToFind.setProductNumber(product.getProductNumber());
 
