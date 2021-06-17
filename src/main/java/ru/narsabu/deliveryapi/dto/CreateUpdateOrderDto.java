@@ -1,17 +1,13 @@
 package ru.narsabu.deliveryapi.dto;
 
 import lombok.Data;
-import ru.narsabu.deliveryapi.model.Product;
 import ru.narsabu.deliveryapi.model.ProductForOrder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Data
-public class OrderDto {
-
-    private UUID id;
+public class CreateUpdateOrderDto {
 
     private String areaName;
 

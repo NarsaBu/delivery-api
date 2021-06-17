@@ -2,12 +2,8 @@ package ru.narsabu.deliveryapi.dto;
 
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
-public class ProductDto {
-
-    private UUID id;
+public class CreateUpdateProductDto {
 
     private String productName;
 
