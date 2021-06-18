@@ -1,16 +1,9 @@
 package ru.narsabu.deliveryapi.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.narsabu.deliveryapi.dto.AreaDto;
+import org.springframework.web.bind.annotation.*;
+import ru.narsabu.deliveryapi.dto.AreaDtoRead;
+import ru.narsabu.deliveryapi.dto.CreateUpdateAreaRequest;
 import ru.narsabu.deliveryapi.mapper.AreaMapper;
 import ru.narsabu.deliveryapi.model.Area;
 import ru.narsabu.deliveryapi.service.AreaService;
@@ -32,44 +25,38 @@ public class AreaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AreaDto>> getAreaList() {
-        return new ResponseEntity<>(
-                areaMapper.modelToDto(areaService.getAreaList()),
-                HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public List<AreaDtoRead> getAreaList() {
+        return areaMapper.modelToDto(areaService.getAreaList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AreaDto> getAreaById(@PathVariable UUID id) {
-        return new ResponseEntity<>(
-                areaMapper.modelToDto(areaService.getAreaById(id)),
-                HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public AreaDtoRead getAreaById(@PathVariable UUID id) {
+        return areaMapper.modelToDto(areaService.getAreaById(id));
     }
 
     @PostMapping
-    public ResponseEntity<AreaDto> createArea(@RequestBody AreaDto areaDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public AreaDtoRead createArea(@RequestBody CreateUpdateAreaRequest areaDto) {
         Area area = areaMapper.dtoToModel(areaDto);
 
-        return new ResponseEntity<>(
-                areaMapper.modelToDto(areaService.createArea(area)),
-                HttpStatus.CREATED
-        );
+        return areaMapper.modelToDto(areaService.createArea(area));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AreaDto> updateAreaById(@PathVariable UUID id, @RequestBody AreaDto areaDto) {
+    @ResponseStatus(HttpStatus.OK)
+    public AreaDtoRead updateAreaById(@PathVariable UUID id,
+                                                      @RequestBody CreateUpdateAreaRequest areaDto
+    ) {
         Area area = areaMapper.dtoToModel(areaDto);
 
-        return new ResponseEntity<>(
-                areaMapper.modelToDto(areaService.updateAreaById(id, area)),
-                HttpStatus.OK
-        );
+        return areaMapper.modelToDto(areaService.updateAreaById(id, area));
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteAreaById(@PathVariable UUID id) {
         areaService.deleteAreaById(id);
-        ResponseEntity.ok();
     }
 }

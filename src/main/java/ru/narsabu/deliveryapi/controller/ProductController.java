@@ -1,16 +1,9 @@
 package ru.narsabu.deliveryapi.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.narsabu.deliveryapi.dto.ProductDto;
+import org.springframework.web.bind.annotation.*;
+import ru.narsabu.deliveryapi.dto.CreateUpdateProductDto;
+import ru.narsabu.deliveryapi.dto.ProductDtoRead;
 import ru.narsabu.deliveryapi.mapper.ProductMapper;
 import ru.narsabu.deliveryapi.model.Product;
 import ru.narsabu.deliveryapi.service.ProductService;
@@ -32,44 +25,38 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDto>> getProductList() {
-        return new ResponseEntity<>(
-                productMapper.modelToDto(productService.getProductList()),
-                HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductDtoRead> getProductList() {
+        return productMapper.modelToDto(productService.getProductList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable UUID id) {
-        return new ResponseEntity<>(
-                productMapper.modelToDto(productService.getProductById(id)),
-                HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDtoRead getProductById(@PathVariable UUID id) {
+        return productMapper.modelToDto(productService.getProductById(id));
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductDtoRead createProduct(@RequestBody CreateUpdateProductDto productDto) {
         Product product = productMapper.dtoToModel(productDto);
 
-        return new ResponseEntity<>(
-                productMapper.modelToDto(productService.createProduct(product)),
-                HttpStatus.CREATED
-        );
+        return productMapper.modelToDto(productService.createProduct(product));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProductById(@PathVariable UUID id, @RequestBody ProductDto productDto) {
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDtoRead updateProductById(@PathVariable UUID id,
+                                                            @RequestBody CreateUpdateProductDto productDto
+    ) {
         Product product = productMapper.dtoToModel(productDto);
 
-        return new ResponseEntity<>(
-                productMapper.modelToDto(productService.updateProductById(id, product)),
-                HttpStatus.OK
-        );
+        return productMapper.modelToDto(productService.updateProductById(id, product));
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteProductById(@PathVariable UUID id) {
         productService.deleteProductById(id);
-        ResponseEntity.ok();
     }
 }

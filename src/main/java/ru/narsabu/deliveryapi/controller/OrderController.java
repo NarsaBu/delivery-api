@@ -1,16 +1,9 @@
 package ru.narsabu.deliveryapi.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.narsabu.deliveryapi.dto.OrderDto;
+import org.springframework.web.bind.annotation.*;
+import ru.narsabu.deliveryapi.dto.CreateUpdateOrderDto;
+import ru.narsabu.deliveryapi.dto.OrderDtoRead;
 import ru.narsabu.deliveryapi.mapper.OrderMapper;
 import ru.narsabu.deliveryapi.model.Order;
 import ru.narsabu.deliveryapi.service.OrderService;
@@ -32,46 +25,38 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderDto>> getOrderList() {
-        return new ResponseEntity<>(
-                orderMapper.modelToDto(orderService.getOrderList()),
-                HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public List<OrderDtoRead> getOrderList() {
+        return orderMapper.modelToDto(orderService.getOrderList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable UUID id) {
-        return new ResponseEntity<>(
-                orderMapper.modelToDto(orderService.getOrderById(id)),
-                HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public OrderDtoRead getOrderById(@PathVariable UUID id) {
+        return orderMapper.modelToDto(orderService.getOrderById(id));
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public OrderDtoRead createOrder(@RequestBody CreateUpdateOrderDto orderDto) {
         Order order = orderMapper.dtoToModel(orderDto);
-        System.out.println(order);
-        System.out.println(orderDto);
 
-        return new ResponseEntity<>(
-                orderMapper.modelToDto(orderService.createOrder(order)),
-                HttpStatus.CREATED
-        );
+        return orderMapper.modelToDto(orderService.createOrder(order));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDto> updateOrderById(@PathVariable UUID id, @RequestBody OrderDto orderDto) {
+    @ResponseStatus(HttpStatus.OK)
+    public OrderDtoRead updateOrderById(@PathVariable UUID id,
+                                                        @RequestBody CreateUpdateOrderDto orderDto
+    ) {
         Order order = orderMapper.dtoToModel(orderDto);
 
-        return new ResponseEntity<>(
-                orderMapper.modelToDto(orderService.updateOrderById(id, order)),
-                HttpStatus.OK
-        );
+        return orderMapper.modelToDto(orderService.updateOrderById(id, order));
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteOrderById(@PathVariable UUID id) {
         orderService.deleteOrderById(id);
-        ResponseEntity.ok();
     }
 }
