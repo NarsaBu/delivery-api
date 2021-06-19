@@ -2,7 +2,7 @@ package ru.narsabu.deliveryapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.narsabu.deliveryapi.dto.CreateUpdateProductDto;
+import ru.narsabu.deliveryapi.dto.CreateUpdateProductRequest;
 import ru.narsabu.deliveryapi.dto.ProductDtoRead;
 import ru.narsabu.deliveryapi.mapper.ProductMapper;
 import ru.narsabu.deliveryapi.model.Product;
@@ -38,7 +38,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDtoRead createProduct(@RequestBody CreateUpdateProductDto productDto) {
+    public ProductDtoRead createProduct(@RequestBody CreateUpdateProductRequest productDto) {
         Product product = productMapper.dtoToModel(productDto);
 
         return productMapper.modelToDto(productService.createProduct(product));
@@ -47,7 +47,7 @@ public class ProductController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductDtoRead updateProductById(@PathVariable UUID id,
-                                                            @RequestBody CreateUpdateProductDto productDto
+                                                            @RequestBody CreateUpdateProductRequest productDto
     ) {
         Product product = productMapper.dtoToModel(productDto);
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class CreateUpdateOrderDto {
+public class CreateUpdateOrderRequest {
 
     private String areaName;
 

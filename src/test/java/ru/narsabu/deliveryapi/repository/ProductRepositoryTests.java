@@ -44,7 +44,7 @@ public class ProductRepositoryTests {
     void updateProductByIdTest() {
         //GIVEN
         Product productToUpdate = productRepository.save(GenerationUtils.productGenerator());
-        Product productUpdated = GenerationUtils.productUpdater(productToUpdate);
+        Product productUpdated = GenerationUtils.areaUpdater(productToUpdate);
 
         //WHEN
         Product result = productRepository.save(productUpdated);

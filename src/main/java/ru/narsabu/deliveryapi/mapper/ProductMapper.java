@@ -3,7 +3,7 @@ package ru.narsabu.deliveryapi.mapper;
 import lombok.val;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import ru.narsabu.deliveryapi.dto.CreateUpdateProductDto;
+import ru.narsabu.deliveryapi.dto.CreateUpdateProductRequest;
 import ru.narsabu.deliveryapi.dto.ProductDtoRead;
 import ru.narsabu.deliveryapi.model.Product;
 
@@ -18,7 +18,7 @@ public class ProductMapper {
         return mapper.map(product, ProductDtoRead.class);
     }
 
-    public Product dtoToModel(CreateUpdateProductDto productDto) {
+    public Product dtoToModel(CreateUpdateProductRequest productDto) {
         val mapper = new ModelMapper();
         return mapper.map(productDto, Product.class);
     }

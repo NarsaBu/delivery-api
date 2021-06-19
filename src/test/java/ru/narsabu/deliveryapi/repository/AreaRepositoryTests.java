@@ -44,7 +44,7 @@ public class AreaRepositoryTests {
     void updateAreaByIdTest() {
         //GIVEN
         Area areaToUpdate = areaRepository.save(GenerationUtils.areaGenerator());
-        Area areaUpdated = GenerationUtils.productUpdater(areaToUpdate);
+        Area areaUpdated = GenerationUtils.areaUpdater(areaToUpdate);
 
         //WHEN
         Area result = areaRepository.save(areaUpdated);

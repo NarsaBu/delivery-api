@@ -2,7 +2,7 @@ package ru.narsabu.deliveryapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.narsabu.deliveryapi.dto.CreateUpdateOrderDto;
+import ru.narsabu.deliveryapi.dto.CreateUpdateOrderRequest;
 import ru.narsabu.deliveryapi.dto.OrderDtoRead;
 import ru.narsabu.deliveryapi.mapper.OrderMapper;
 import ru.narsabu.deliveryapi.model.Order;
@@ -38,7 +38,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderDtoRead createOrder(@RequestBody CreateUpdateOrderDto orderDto) {
+    public OrderDtoRead createOrder(@RequestBody CreateUpdateOrderRequest orderDto) {
         Order order = orderMapper.dtoToModel(orderDto);
 
         return orderMapper.modelToDto(orderService.createOrder(order));
@@ -47,7 +47,7 @@ public class OrderController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public OrderDtoRead updateOrderById(@PathVariable UUID id,
-                                                        @RequestBody CreateUpdateOrderDto orderDto
+                                                        @RequestBody CreateUpdateOrderRequest orderDto
     ) {
         Order order = orderMapper.dtoToModel(orderDto);
 

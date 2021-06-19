@@ -3,7 +3,7 @@ package ru.narsabu.deliveryapi.dto;
 import lombok.Data;
 
 @Data
-public class CreateUpdateProductDto {
+public class CreateUpdateProductRequest {
 
     private String productName;
 
