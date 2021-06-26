@@ -48,7 +48,7 @@ public class GenerationUtils {
         return product;
     }
 
-    public static Product areaUpdater(Product product) {
+    public static Product productUpdater(Product product) {
         val productUpdated = new Product();
         productUpdated.setId(product.getId());
         productUpdated.setProductName(generateName());
